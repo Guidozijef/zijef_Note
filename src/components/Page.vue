@@ -7,7 +7,7 @@
     <div class="time">{{ this.time | dateFormat }}</div>
     <!-- <br> -->
     <hr>
-    <!-- <div class="items markdown-body" v-html="compiledMarkdown"></div> -->
+    <div class="items markdown-body" v-html="compiledMarkdown"></div>
   </div>
 </template>
 <script>
