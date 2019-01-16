@@ -1,12 +1,9 @@
 <template>
   <div class="home-container">
-    <!-- <span>{{ $store.getters.getinfo.title }}</span> -->
-    <!-- <span>{{ $store.state.list }}</span> -->
     <el-card class="box-card" v-for="item in $store.state.list" :key="item.time">
       <div slot="header" class="clearfix" @click="goPage(item.time)">
         <span class="title">{{ item.title }}</span>
         <span class="time">{{ item.time | dateFormat }}</span>
-        <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
       </div>
       <!-- <div class="markdown-body" v-html="item.content"></div> -->
     </el-card>

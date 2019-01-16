@@ -205,7 +205,7 @@ export default {
   margin-right: 10px;
 }
 .particles {
-  position: absolute;
+  position: fixed;
   z-index: -1;
   width: 100%;
   height: 100%;
