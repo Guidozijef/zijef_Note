@@ -7,7 +7,7 @@
     <div class="toolbar"></div>
     <div class="items">
       <textarea id="md" class="form-control" placeholder="请输入Markdown代码" v-model="context"></textarea>
-      <div id="html" class="col-lg-6 col-sm-6 col-md-6" v-html="compiledMarkdown()"></div>
+      <div id="html" class="col-lg-6 col-sm-6 col-md-6" v-html="compiledMarkdown"></div>
       <!-- <div id="html" class="col-lg-6 col-sm-6 col-md-6" v-html="new_content" v-highlight></div> -->
     </div>
   </div>
