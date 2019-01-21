@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
     <div class="edit" @click="edit()">
-      <el-button type="primary" icon="el-icon-edit" circle></el-button>
+      <i class="iconfont icon-combinedshapecopy2" style="fontSize:22px;cursor:pointer;" title="编辑"></i>
     </div>
     <div class="title" v-html="title"></div>
     <div class="time">{{ this.time | dateFormat }}</div>

@@ -2,7 +2,8 @@
   <div class="compile-container">
     <div class="title">
       <input class="input" type="text" v-model="input" placeholder="请输入标题">
-      <el-button type="primary" class="save" @click="edit_save()">保存</el-button>
+      <!-- <el-button type="primary" class="save" @click="edit_save()">保存</el-button> -->
+      <i class="iconfont icon-baocun save" @click="edit_save()" style title="保存"></i>
     </div>
     <div class="toolbar"></div>
     <div class="items">
@@ -105,11 +106,12 @@ export default {
   overflow-y: hidden;
   height: 100%;
   .title {
-    // width: 100%;
+    width: 100%;
+    overflow: hidden;
     .input {
       border: none;
       margin: 0 auto;
-      width: 97.8%;
+      width: 100%;
       height: 80px;
       padding-left: 30px;
       font-size: 30px;
@@ -119,8 +121,10 @@ export default {
     }
     .save {
       position: absolute;
-      top: 79px;
-      right: 55px;
+      top: 87px;
+      right: 65px;
+      font-size: 22px;
+      cursor: pointer;
       // background-color: #ca0c16;
     }
   }
@@ -139,7 +143,7 @@ export default {
       height: 500px;
       width: 50%;
       padding: 15px;
-      font-family: "Microsoft YaHei";
+      font-family: "Mricosoft YaHei";
       border: none;
     }
     #md {

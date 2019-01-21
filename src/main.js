@@ -14,9 +14,8 @@ import router from './router/router';
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
-// 导入背景粒子的包并注册使用
-import VueParticles from 'vue-particles';
-Vue.use(VueParticles);
+// 引入iconfont字体图标文件
+import './assets/IconFont/iconfont.css';
 
 // 导入格式化时间插件
 import moment from 'moment';

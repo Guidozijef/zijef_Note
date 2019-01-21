@@ -5,45 +5,45 @@
     </div>-->
     <!-- header区域 -->
     <el-menu
+      style="position:fixed;
+      top: 0px;
+      left: 0;
+      width: 100%;
+      zIndex:99"
       :default-active="activeIndex2"
       class="el-menu-demo"
       mode="horizontal"
       @select="handleSelect"
-      background-color="#420B5C"
-      text-color="#fff"
-      active-text-color="#409EFF"
+      background-color="#fff"
+      text-color="#000"
+      active-text-color="#007BFB"
     >
       <div class="logo">
         <img src="./assets/title.png" alt>
       </div>
-      <el-menu-item index="1">我的博客</el-menu-item>
+      <el-menu-item index="1">
+        <a href="/home" target="_blank">我的博客</a>
+      </el-menu-item>
       <el-submenu index="2">
         <template slot="title">我的工作台</template>
         <el-menu-item index="2-1" v-for="classify in classifys" :key="classify.legth">{{ classify }}</el-menu-item>
         <el-menu-item index="2-4" @click="addToClassify()">
           <i class="el-icon-circle-plus-outline"></i>新增
         </el-menu-item>
-
-        <!-- <el-submenu index="2-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="2-4-1">选项1</el-menu-item>
-          <el-menu-item index="2-4-2">选项2</el-menu-item>
-          <el-menu-item index="2-4-3">选项3</el-menu-item>
-        </el-submenu>-->
       </el-submenu>
       <el-menu-item index="3">个人中心</el-menu-item>
       <el-menu-item index="4">
-        <a href="#" target="_blank">博客管理</a>
+        <a href="javascript:;" target="_blank">博客管理</a>
       </el-menu-item>
       <div class="search">
         <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
       </div>
-      <div></div>
       <div class="write" @click="write()">
-        <el-button type="danger" icon="el-icon-edit-outline" circle></el-button>
+        <i class="iconfont icon-bianji" style="fontSize:22px;border:1px solid #fff;" title="写文章"></i>
+        <!-- <el-button type="danger" icon="el-icon-edit-outline" circle></el-button> -->
       </div>
       <div class="back" @click="goback()" v-show="flag">
-        <el-button type="danger" icon="el-icon-back" circle></el-button>
+        <i class="iconfont icon-ffanhui-" style="fontSize:22px;cursor:pointer;" title="返回"></i>
       </div>
     </el-menu>
 
@@ -68,26 +68,6 @@
         <el-button type="primary" @click="ok()">确 定</el-button>
       </span>
     </el-dialog>
-
-    <!-- 背景粒子 -->
-    <vue-particles
-      class="particles"
-      color="#420c5c"
-      :particleOpacity="0.7"
-      :particlesNumber="100"
-      shapeType="star"
-      :particleSize="6"
-      linesColor="#420c5c"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="push"
-    ></vue-particles>
 
     <router-view></router-view>
   </div>
