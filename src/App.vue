@@ -22,7 +22,7 @@
         <img src="./assets/title.png" alt>
       </div>
       <el-menu-item index="1">
-        <a href="/home" target="_blank">我的博客</a>
+        <router-link :to="'./'" target="_blank">我的博客</router-link>
       </el-menu-item>
       <el-submenu index="2">
         <template slot="title">我的工作台</template>
@@ -39,11 +39,19 @@
         <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
       </div>
       <div class="write" @click="write()">
-        <i class="iconfont icon-bianji" style="fontSize:22px;border:1px solid #fff;" title="写文章"></i>
+        <i
+          class="iconfont icon-bianji"
+          style="fontSize:22px;border:1px solid #fff;color:#5E5E5E;"
+          title="写文章"
+        ></i>
         <!-- <el-button type="danger" icon="el-icon-edit-outline" circle></el-button> -->
       </div>
       <div class="back" @click="goback()" v-show="flag">
-        <i class="iconfont icon-ffanhui-" style="fontSize:22px;cursor:pointer;" title="返回"></i>
+        <i
+          class="iconfont icon-ffanhui-"
+          style="fontSize:22px;cursor:pointer;color:#5E5E5E;"
+          title="返回"
+        ></i>
       </div>
     </el-menu>
 

@@ -8,7 +8,7 @@
         @click="goPage(item.time)"
       >
         <img src="https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin_plus/875.jpg?2" alt>
-        <span class="title">{{ item.title }}</span>
+        <span class="title" :title="item.title">{{ item.title }}</span>
         <span class="time">{{ item.time | dateFormat }}</span>
         <!-- <div class="markdown-body" v-html="item.content"></div> -->
       </div>
