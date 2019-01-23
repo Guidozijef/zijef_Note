@@ -29,14 +29,9 @@ Vue.filter('dateFormat', function(value, formatString) {
 
 import './assets/github-markdown.min.css'; //markdown样式文件
 
-// // 自定义代码高亮指令  添加v-highlight即可
-// import hljs from 'highlight.js';
-// Vue.directive('highlight', function(el) {
-// 	let blocks = el.querySelectorAll('pre code');
-// 	blocks.forEach((block) => {
-// 		hljs.highlightBlock(block);
-// 	});
-// });
+// 导入封装后的axios
+import axios from './request.js'; // 全局添加请求函数配置
+Vue.prototype.$axios = axios;
 
 //  每次进入网站先读取本地存储的文章信息,然后赋值给 store 中的 list，再在 store 中取数据
 var list = JSON.parse(localStorage.getItem('list') || '[]');

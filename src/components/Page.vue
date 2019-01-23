@@ -1,6 +1,27 @@
 <template>
   <div class="page-container">
-    <div class="bg"></div>
+    <div class="bg">
+      <img :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin/' + bgValue + '.jpg'">
+    </div>
+    <div class="tabs" @click="addActive=!addActive">
+      <dir class="changeSkin">换肤</dir>
+    </div>
+    <transition name="fade">
+      <div class="img-box" v-show="addActive">
+        <ul>
+          <li
+            v-for="(img, index) in skinList[0].bgitem"
+            :key="img.index"
+            @click="saveImg(img.dataindex)"
+          >
+            <img
+              :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin_plus/' + (img.dataindex) + '.jpg?2'"
+              :title="img.filewriter"
+            >
+          </li>
+        </ul>
+      </div>
+    </transition>
     <div class="main-box">
       <div class="edit" @click="edit()">
         <i
@@ -33,7 +54,10 @@ export default {
     return {
       title: "",
       time: "",
-      content: ""
+      content: "",
+      addActive: false,
+      skinList: [],
+      bgValue: ""
     };
   },
   created() {
@@ -47,10 +71,29 @@ export default {
       }
     });
     // console.log(this.$route.params.id); // 获取url传来的id值，即是传入的时间参数
+    // 发送请求换肤的图片数据
+    this.$axios
+      .http({ type: "get", url: "classes/TestObject/5c3dfd0f44d904005d910cbc" })
+      .then(res => {
+        console.log(res.data.bsResult.data);
+        this.skinList = res.data.bsResult.data;
+      });
   },
   methods: {
     edit() {
       this.$router.push({ name: "compile" });
+    },
+    saveImg(id) {
+      this.bgValue = id;
+      var localStorage_list = JSON.parse(localStorage.getItem("list"));
+      localStorage_list.forEach((item, Index) => {
+        if (item.time == this.$route.params.id) {
+          item.imgValue = id;
+          item.bgValue = id;
+        }
+      });
+      // localStorage_list.unshift(info);
+      localStorage.setItem("list", JSON.stringify(localStorage_list));
     }
   },
   computed: {
@@ -68,12 +111,56 @@ export default {
     width: 100%;
     height: 100%;
     position: fixed;
-    // background-color: gold;
+    // background: url("https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin/887.jpg")
+    //   no-repeat 100% 100%;
     z-index: -1;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .tabs {
+    .changeSkin {
+      position: fixed;
+      top: 5px;
+      right: 10px;
+      margin-right: 20px;
+      cursor: pointer;
+      z-index: 99;
+      font-size: 14px;
+    }
+  }
+  .img-box {
+    overflow: auto;
+    margin-top: 60px;
+    position: fixed;
+    top: 0;
+    right: 0px;
+    width: 317px;
+    height: 100%;
+    background-color: gold;
+    li {
+      width: 150px;
+      height: 94px;
+      float: right;
+      img {
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.5s ease;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    transform: translatex(300px);
   }
   .main-box {
+    margin-top: 60px;
     overflow: hidden;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;

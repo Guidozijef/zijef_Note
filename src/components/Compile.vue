@@ -46,7 +46,8 @@ export default {
       var info = {
         title: this.input,
         time: Date.parse(new Date()),
-        content: this.context
+        content: this.context,
+        imgValue: ""
       };
       // 调用 store 中的 mutations 来保存到 store 的 list 中
       if (info.title == "") {
