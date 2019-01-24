@@ -67,6 +67,7 @@ export default {
         this.title = item.title;
         this.time = item.time;
         this.content = item.content;
+        this.bgValue = item.bgValue;
         return;
       }
     });
