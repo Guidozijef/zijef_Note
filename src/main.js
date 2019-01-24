@@ -55,7 +55,19 @@ const store = new Vuex.Store({
 });
 
 // 导入element-ui
-import { Menu, Submenu, MenuItem, MenuItemGroup, Input, InputNumber, Button, Card, Dialog, Message } from 'element-ui';
+import {
+	Menu,
+	Submenu,
+	MenuItem,
+	MenuItemGroup,
+	Input,
+	InputNumber,
+	Button,
+	Card,
+	Dialog,
+	Message,
+	Slider
+} from 'element-ui';
 Vue.component(Menu.name, Menu);
 Vue.component(Submenu.name, Submenu);
 Vue.component(MenuItem.name, MenuItem);
@@ -66,6 +78,7 @@ Vue.component(Button.name, Button);
 Vue.component(Card.name, Card);
 Vue.component(Dialog.name, Dialog);
 Vue.component(Message.name, Message);
+Vue.component(Slider.name, Slider);
 
 // 将 Message 直接挂在 Vue 实例上
 Vue.prototype.$message = Message;

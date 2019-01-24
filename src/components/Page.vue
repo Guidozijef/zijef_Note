@@ -8,6 +8,7 @@
     </div>
     <transition name="fade">
       <div class="img-box" v-show="addActive">
+        <el-slider v-model="value2" :show-tooltip="false" @change="opacity"></el-slider>
         <ul>
           <li
             v-for="(img, index) in skinList[0].bgitem"
@@ -22,7 +23,7 @@
         </ul>
       </div>
     </transition>
-    <div class="main-box">
+    <div class="main-box" :style="{opacity: opacityValue}">
       <div class="edit" @click="edit()">
         <i
           class="iconfont icon-combinedshapecopy2"
@@ -57,7 +58,9 @@ export default {
       content: "",
       addActive: false,
       skinList: [],
-      bgValue: ""
+      bgValue: "",
+      value2: 50,
+      opacityValue: ""
     };
   },
   created() {
@@ -95,6 +98,9 @@ export default {
       });
       // localStorage_list.unshift(info);
       localStorage.setItem("list", JSON.stringify(localStorage_list));
+    },
+    opacity(val) {
+      this.opacityValue = val / 100;
     }
   },
   computed: {
@@ -139,7 +145,7 @@ export default {
     right: 0px;
     width: 317px;
     height: 100%;
-    background-color: gold;
+    background-color: #fff;
     li {
       width: 150px;
       height: 94px;
@@ -165,6 +171,7 @@ export default {
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
+    // opacity: 0.5;
     .edit {
       float: right;
     }

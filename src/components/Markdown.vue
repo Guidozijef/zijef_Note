@@ -31,8 +31,8 @@ export default {
         time: Date.parse(new Date()),
         content: this.$refs.md.d_value, // 获取编写的markdown的html内容
         // content: this.$refs.md.d_render // 获取编写的markdown的html内容
-        imgValue: 887,
-        bgValue: ""
+        imgValue: 776,
+        bgValue: 776
       };
       // 调用 store 中的 mutations 来保存到 store 的 list 中
       if (info.title == "") {
