@@ -10,11 +10,7 @@
       <div class="img-box" v-show="addActive">
         <el-slider v-model="value2" :show-tooltip="false" @change="opacity"></el-slider>
         <ul>
-          <li
-            v-for="img in skinList[0].bgitem"
-            :key="img.index"
-            @click="saveImg(img.dataindex)"
-          >
+          <li v-for="img in skinList[0].bgitem" :key="img.index" @click="saveImg(img.dataindex)">
             <img
               :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin_plus/' + (img.dataindex) + '.jpg?2'"
               :title="img.filewriter"
@@ -150,23 +146,27 @@ export default {
       width: 150px;
       height: 94px;
       float: right;
+      &:hover {
+        box-shadow: 0px 0px 20px #000000;
+        z-index: 22;
+      }
       img {
         width: 100%;
         cursor: pointer;
       }
     }
   }
-  .img-box::-webkit-scrollbar{
+  .img-box::-webkit-scrollbar {
     width: 6px;
     background-color: #f5f5f5;
   }
-  .img-box::-webkit-scrollbar-track{
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  .img-box::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #f5f5f5;
   }
-  .img-box::-webkit-scrollbar-thumb{
-    background-color: #409EFF;
+  .img-box::-webkit-scrollbar-thumb {
+    background-color: #409eff;
     border-radius: 5px;
   }
   .fade-enter-active,
