@@ -11,7 +11,7 @@
         <el-slider v-model="value2" :show-tooltip="false" @change="opacity"></el-slider>
         <ul>
           <li
-            v-for="(img, index) in skinList[0].bgitem"
+            v-for="img in skinList[0].bgitem"
             :key="img.index"
             @click="saveImg(img.dataindex)"
           >
@@ -161,6 +161,7 @@ export default {
     background-color: #f5f5f5;
   }
   .img-box::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     background-color: #f5f5f5;
   }
