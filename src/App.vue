@@ -9,7 +9,8 @@
       top: 0px;
       left: 0;
       width: 100%;
-      zIndex:99"
+      zIndex:99;
+      border-bottom:none;"
       :default-active="activeIndex2"
       class="el-menu-demo"
       mode="horizontal"
@@ -38,22 +39,22 @@
       <div class="search">
         <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
       </div>
-      <div class="write" @click="write()">
-        <i
-          class="iconfont icon-bianji"
-          style="fontSize:22px;border:1px solid #fff;color:#5E5E5E;"
-          title="写文章"
-        ></i>
-        <!-- <el-button type="danger" icon="el-icon-edit-outline" circle></el-button> -->
-      </div>
-      <div class="back" @click="goback()" v-show="flag">
-        <i
-          class="iconfont icon-ffanhui-"
-          style="fontSize:22px;cursor:pointer;color:#5E5E5E;"
-          title="返回"
-        ></i>
-      </div>
     </el-menu>
+    <div class="write" @click="write()" tabindex="none">
+      <i
+        class="iconfont icon-bianji"
+        title="写文章"
+        style="fontSize:22px;cursor:pointer;color:#5E5E5E;"
+      ></i>
+      <!-- <el-button type="danger" icon="el-icon-edit-outline" circle></el-button> -->
+    </div>
+    <div class="back" @click="goback()" v-show="this.$route.path !== '/home'" tabindex="none">
+      <i
+        class="iconfont icon-ffanhui-"
+        title="返回"
+        style="fontSize:22px;cursor:pointer;color:#5E5E5E;"
+      ></i>
+    </div>
 
     <!-- 添加分类弹出类名输入框 -->
     <!-- <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button> -->
@@ -97,15 +98,6 @@ export default {
       dialogFormVisible: false, // 控制类名提示框的弹出
       className: ""
     };
-  },
-  created() {
-    // if(this.$router.path === '/home'){
-    //     this.flag = false;
-    //   }else{
-    //     this.flag = true;
-    //   }
-    // 等价于
-    this.flag = this.$route.path === "/home" ? false : true; // 一开始就监听路由当为主页路由链接时返回键就隐藏
   },
   methods: {
     handleSelect(key, keyPath) {
@@ -186,11 +178,19 @@ export default {
   line-height: 59px;
   float: right;
   margin-right: 80px;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 10px;
 }
 .back {
   line-height: 59px;
   float: right;
   margin-right: 10px;
+  position: fixed;
+  top: 0;
+  right: 113px;
+  z-index: 99;
 }
 .particles {
   position: fixed;

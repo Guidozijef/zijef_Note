@@ -142,6 +142,7 @@ export default {
     width: 306px;
     height: 100%;
     background-color: #fff;
+    z-index: 90;
     li {
       width: 150px;
       height: 94px;
