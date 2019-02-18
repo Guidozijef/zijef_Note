@@ -1,16 +1,16 @@
 <template>
-  <div class="page-container">
+  <div class="page-container" @click="addActive=false">
     <div class="bg">
       <img :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin/' + bgValue + '.jpg'">
     </div>
-    <div class="tabs" @click="addActive=!addActive">
+    <div class="tabs" @click.stop="addActive=true">
       <dir class="changeSkin">换肤</dir>
     </div>
     <transition name="fade">
       <div class="img-box" v-show="addActive">
         <el-slider v-model="value2" :show-tooltip="false" @change="opacity"></el-slider>
         <ul>
-          <li v-for="img in skinList[0].bgitem" :key="img.index" @click="saveImg(img.dataindex)">
+          <li v-for="img in skinList" :key="img.index" @click="saveImg(img.dataindex)">
             <img
               :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin_plus/' + (img.dataindex) + '.jpg?2'"
               :title="img.filewriter"
@@ -75,8 +75,9 @@ export default {
     this.$axios
       .http({ type: "get", url: "classes/TestObject/5c3dfd0f44d904005d910cbc" })
       .then(res => {
-        console.log(res.data.bsResult.data);
-        this.skinList = res.data.bsResult.data;
+        // console.log(res.data.bsResult.data);
+        var bginfo = res.data.bsResult.data;
+        this.skinList = bginfo[0].bgitem;
       });
   },
   methods: {
