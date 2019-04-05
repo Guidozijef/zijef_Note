@@ -78,7 +78,6 @@ export default {
         { bar: "简约", presentFalg: false, datalist: [] },
         { bar: "清新", presentFalg: false, datalist: [] }
       ],
-      dataList: ["top"]
     };
   },
   created() {
@@ -97,7 +96,7 @@ export default {
     this.$axios
       .http({ type: "get", url: "classes/TestObject/5c3dfd0f44d904005d910cbc" })
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         var bginfo = res.data.bsResult.data;
         this.skinList = bginfo[0].bgitem;
         this.barList[0].datalist = bginfo[0].bgitem;
