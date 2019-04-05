@@ -53,7 +53,7 @@ export default {
         border-radius: 5px 5px 0 0;
         transition: all 0.5s ease;
         &:hover {
-          transform: scale(1.02);
+          transform: scale(1.1);
         }
       }
       .title {

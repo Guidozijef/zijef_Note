@@ -27,7 +27,8 @@ Vue.filter('dateFormat', function(value, formatString) {
 	return moment(value).format(formatString);
 });
 
-import './assets/github-markdown.min.css'; //markdown样式文件
+// import './assets/github-markdown.min.css'; //markdown样式文件
+import './assets/css/marxico.css'; //markdown样式文件
 
 // 导入封装后的axios
 import axios from './request.js'; // 全局添加请求函数配置
@@ -85,7 +86,7 @@ Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false;
 
-import './assets/defind.scss'; // 自定义去掉body的margin
+import './assets/css/defind.scss'; // 自定义去掉body的margin
 /* eslint-disable no-new */
 var vm = new Vue({
 	el: '#app',

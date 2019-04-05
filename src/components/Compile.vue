@@ -101,7 +101,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../assets/github-markdown.min.css"; //markdown样式文件
+// @import "../assets/css/github-markdown.min.css"; //markdown样式文件
+@import "../assets/css/marxico.css"; //markdown样式文件
 .compile-container {
   width: 100%;
   overflow-y: hidden;

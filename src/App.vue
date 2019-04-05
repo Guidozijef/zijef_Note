@@ -20,7 +20,7 @@
       active-text-color="#007BFB"
     >
       <div class="logo">
-        <img src="./assets/title.png" alt>
+        <img src="./assets/bixian.png" alt>
       </div>
       <el-menu-item index="1">
         <router-link to="/">我的博客</router-link>
@@ -123,7 +123,12 @@ export default {
     goback() {
       if (this.$route.path === "/markdown") {
         this.dialogVisible = true;
-      } else {
+      } else if(this.$route.params.id){
+        this.$router.push("/home");
+        // 返回后马上将数据请求到store中，然后渲染，避免因为后面修改文章，不显示最新数据
+        var list = JSON.parse(localStorage.getItem("list") || "[]");
+        this.$store.state.list = list;
+      }else{
         // 点击返回上一步
         this.$router.go(-1);
         // 返回后马上将数据请求到store中，然后渲染，避免因为后面修改文章，不显示最新数据

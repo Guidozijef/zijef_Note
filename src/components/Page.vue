@@ -1,15 +1,25 @@
 <template>
-  <div class="page-container" @click="addActive=false">
+  <div class="page-container">
     <div class="bg">
       <img :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin/' + bgValue + '.jpg'">
     </div>
-    <div class="tabs" @click.stop="addActive=true">
+    <div class="tabs" @click.stop="addActive= !addActive">
       <dir class="changeSkin">换肤</dir>
     </div>
     <transition name="fade">
       <div class="img-box" v-show="addActive">
         <el-slider v-model="value2" :show-tooltip="false" @change="opacity"></el-slider>
-        <ul>
+        <ul class="nav-list">
+          <li
+            :class="{present:item.presentFalg}"
+            v-for="(item, index) in barList"
+            :key="index"
+            @click="barTable(index)"
+          >
+            <span class="skinnav-nav-name">{{item.bar}}</span>
+          </li>
+        </ul>
+        <ul class="img-list">
           <li v-for="img in skinList" :key="img.index" @click="saveImg(img.dataindex)">
             <img
               :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin_plus/' + (img.dataindex) + '.jpg?2'"
@@ -38,7 +48,8 @@
 <script>
 import marked from "marked";
 import highlight from "highlight.js";
-import "../../node_modules/highlight.js/styles/github.css";
+// import "../../node_modules/highlight.js/styles/github.css";
+import "../assets/css/atom-one-dark.css";
 
 marked.setOptions({
   highlight(code) {
@@ -56,7 +67,18 @@ export default {
       skinList: [],
       bgValue: "",
       value2: 50,
-      opacityValue: ""
+      opacityValue: "",
+      barList: [
+        { bar: "热门", presentFalg: true, datalist: [] },
+        { bar: "游戏", presentFalg: false, datalist: [] },
+        { bar: "卡通", presentFalg: false, datalist: [] },
+        { bar: "女神", presentFalg: false, datalist: [] },
+        { bar: "明星", presentFalg: false, datalist: [] },
+        { bar: "风景", presentFalg: false, datalist: [] },
+        { bar: "简约", presentFalg: false, datalist: [] },
+        { bar: "清新", presentFalg: false, datalist: [] }
+      ],
+      dataList: ["top"]
     };
   },
   created() {
@@ -75,14 +97,56 @@ export default {
     this.$axios
       .http({ type: "get", url: "classes/TestObject/5c3dfd0f44d904005d910cbc" })
       .then(res => {
-        // console.log(res.data.bsResult.data);
+        console.log(res.data);
         var bginfo = res.data.bsResult.data;
         this.skinList = bginfo[0].bgitem;
+        this.barList[0].datalist = bginfo[0].bgitem;
+        this.barList[1].datalist = [
+          ...bginfo[1].skinData[0].list,
+          ...bginfo[1].skinData[1].list,
+          ...bginfo[1].skinData[2].list,
+          ...bginfo[1].skinData[3].list,
+          ...bginfo[1].skinData[4].list,
+          ...bginfo[1].skinData[5].list,
+          ...bginfo[1].skinData[6].list
+        ];
+        this.barList[2].datalist = [
+          ...bginfo[2].skinData[0].list,
+          ...bginfo[2].skinData[1].list,
+          ...bginfo[2].skinData[2].list
+        ];
+        this.barList[3].datalist = [
+          ...bginfo[3].starData[0].list,
+          ...bginfo[3].starData[1].list,
+          ...bginfo[3].starData[2].list,
+          ...bginfo[3].starData[3].list,
+          ...bginfo[3].starData[4].list,
+          ...bginfo[3].starData[5].list,
+          ...bginfo[3].starData[6].list,
+          ...bginfo[3].starData[7].list,
+          ...bginfo[3].starData[8].list,
+          ...bginfo[3].starData[9].list
+        ];
+        this.barList[4].datalist = [
+          ...bginfo[4].starData[0].list,
+          ...bginfo[4].starData[1].list,
+          ...bginfo[4].starData[2].list,
+          ...bginfo[4].starData[3].list,
+          ...bginfo[4].starData[4].list,
+          ...bginfo[4].starData[5].list,
+          ...bginfo[4].starData[6].list,
+          ...bginfo[4].starData[7].list,
+          ...bginfo[4].starData[8].list,
+          ...bginfo[4].starData[9].list
+        ];
+        this.barList[5].datalist = bginfo[5].bgitem;
+        this.barList[6].datalist = bginfo[6].bgitem;
+        this.barList[7].datalist = bginfo[7].bgitem;
       });
   },
   methods: {
     edit() {
-      this.$router.push({ name: "compile" });
+      this.$router.push({ name: "markdownedit" });
     },
     saveImg(id) {
       this.bgValue = id;
@@ -98,6 +162,15 @@ export default {
     },
     opacity(val) {
       this.opacityValue = val / 100;
+    },
+    barTable(index) {
+      for (var i = 0; i < this.barList.length; i++) {
+        this.barList[i].presentFalg = false;
+        if (i == index) {
+          this.barList[index].presentFalg = true;
+          this.skinList = this.barList[index].datalist;
+        }
+      }
     }
   },
   computed: {
@@ -140,21 +213,47 @@ export default {
     position: fixed;
     top: 0;
     right: 0px;
-    width: 306px;
+    width: 342px;
     height: 100%;
     background-color: #fff;
     z-index: 90;
-    li {
-      width: 150px;
-      height: 94px;
-      float: right;
-      &:hover {
-        box-shadow: 0px 0px 20px #000000;
-        z-index: 22;
+    .nav-list {
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      li {
+        text-align: center;
+        float: left;
+        width: 42px;
+        transition: all 0.5s ease;
+        &:hover {
+          background-color: #389cff;
+          cursor: pointer;
+          span {
+            color: #fff;
+          }
+        }
       }
-      img {
-        width: 100%;
-        cursor: pointer;
+      .present {
+        background-color: #389cff;
+        span {
+          color: #fff;
+        }
+      }
+    }
+
+    .img-list {
+      li {
+        width: 168px;
+        float: right;
+        &:hover {
+          box-shadow: 0px 0px 20px #000000;
+          z-index: 22;
+        }
+        img {
+          width: 100%;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -182,9 +281,9 @@ export default {
   .main-box {
     margin-top: 60px;
     overflow: hidden;
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #f9fafb;
     padding: 20px;
     // opacity: 0.5;
     .edit {

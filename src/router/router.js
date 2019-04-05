@@ -15,6 +15,7 @@ export default new Router({
 		{ path: '/home', component: Home },
 		{ path: '/markdown', component: Markdown, name: 'markdown' },
 		{ path: '/home/page/:id', component: Page, name: 'page' },
-		{ path: '/home/compile/:id', component: Compile, name: 'compile' }
+		{ path: '/markdown/:id', component: Markdown, name: 'markdownedit' }
+		// { path: '/home/compile/:id', component: Compile, name: 'compile' }
 	]
 });
