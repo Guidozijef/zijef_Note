@@ -20,7 +20,7 @@
       active-text-color="#007BFB"
     >
       <div class="logo">
-        <img src="./assets/bixian.png" alt>
+        <img src="./assets/images/bixian.png" alt>
       </div>
       <el-menu-item index="1">
         <router-link to="/">我的博客</router-link>
@@ -72,10 +72,10 @@
 
     <!-- 写文章时保存提示弹框 -->
     <!-- <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button> -->
-    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%">
       <span>内容是否已保存？</span>
       <span slot="footer" class="dialog-footer">
-        <el-button>取 消</el-button>
+        <el-button  @click="dialogVisible = false">取 消</el-button>
         <!-- <el-button type="primary" @click="dialogVisible = false">确 定</el-button> -->
         <el-button type="primary" @click="ok()">确 定</el-button>
       </span>
@@ -111,7 +111,7 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     },
     // 点击增加分类
     addToClassify() {
@@ -145,12 +145,6 @@ export default {
         var list = JSON.parse(localStorage.getItem("list") || "[]");
         this.$store.state.list = list;
       }
-    },
-    handleClose(done) {
-      // this.$confirm("确认关闭？")
-      //   .then(_ => {})
-      //   .catch(_ => {});
-      this.dialogVisible = false;
     },
     ok() {
       this.dialogVisible = false;
