@@ -79,8 +79,8 @@ export default {
         // this.$store.state.list = list;
         this.open6();
       } else {
-        info.imgValue = 776,
-        info.bgValue = 776
+        info.imgValue = 660,
+        info.bgValue = 660
         this.$store.commit("addToList", info); // 将数据添加到store
         this.open6();
       }

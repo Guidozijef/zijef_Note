@@ -4,7 +4,7 @@
       <img :src="'https://ss0.bdstatic.com/l4oZeXSm1A5BphGlnYG/skin/' + bgValue + '.jpg'">
     </div>
     <div class="tabs" @click.stop="addActive= !addActive">
-      <dir class="changeSkin">换肤</dir>
+      <div class="changeSkin">换肤</div>
     </div>
     <transition name="fade">
       <div class="img-box" v-show="addActive">
@@ -66,6 +66,7 @@ export default {
       addActive: false,
       skinList: [],
       bgValue: "",
+      imgValue: "",
       value2: 50,
       opacityValue: "",
       barList: [
@@ -88,6 +89,7 @@ export default {
         this.time = item.time;
         this.content = item.content;
         this.bgValue = item.bgValue;
+        this.imgValue = item.imgValue;
         return;
       }
     });
@@ -198,8 +200,8 @@ export default {
   .tabs {
     .changeSkin {
       position: fixed;
-      top: 5px;
-      right: 10px;
+      top: 20px;
+      right: 20px;
       margin-right: 20px;
       cursor: pointer;
       z-index: 99;

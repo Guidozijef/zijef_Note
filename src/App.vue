@@ -55,6 +55,9 @@
         style="fontSize:22px;cursor:pointer;color:#5E5E5E;"
       ></i>
     </div>
+    <!-- <div class="music" @click="stopMusic()">
+      <img src="./assets/音符.png" alt style="height:30px;" id="musicImg" class="rotation">
+    </div> -->
 
     <!-- 添加分类弹出类名输入框 -->
     <!-- <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button> -->
@@ -79,6 +82,13 @@
     </el-dialog>
 
     <router-view></router-view>
+    <!-- <audio
+      id="audio"
+      preload="auto"
+      autoplay
+      loop
+      src="http://music.163.com/song/media/outer/url?id=31721419.mp3"
+    >Your browser does not support the audio element.</audio> -->
   </div>
 </template>
 
@@ -96,7 +106,7 @@ export default {
       flag: false, // 返回键的隐藏和显示
       dialogVisible: false, // 控制保存提示框
       dialogFormVisible: false, // 控制类名提示框的弹出
-      className: ""
+      className: "",
     };
   },
   methods: {
@@ -123,12 +133,12 @@ export default {
     goback() {
       if (this.$route.path === "/markdown") {
         this.dialogVisible = true;
-      } else if(this.$route.params.id){
+      } else if (this.$route.params.id) {
         this.$router.push("/home");
         // 返回后马上将数据请求到store中，然后渲染，避免因为后面修改文章，不显示最新数据
         var list = JSON.parse(localStorage.getItem("list") || "[]");
         this.$store.state.list = list;
-      }else{
+      } else {
         // 点击返回上一步
         this.$router.go(-1);
         // 返回后马上将数据请求到store中，然后渲染，避免因为后面修改文章，不显示最新数据
@@ -145,7 +155,7 @@ export default {
     ok() {
       this.dialogVisible = false;
       this.$router.go(-1);
-    }
+    },
   },
   watch: {
     "$route.path": function(newVal) {
@@ -203,5 +213,29 @@ export default {
   width: 100%;
   height: 100%;
 }
+// .music {
+//   margin-right: 80px;
+//   position: fixed;
+//   z-index: 99;
+//   top: 14px;
+//   right: -25px;
+// }
+// @-webkit-keyframes rotation {
+//   from {
+//     -webkit-transform: rotate(0deg);
+//   }
+//   to {
+//     -webkit-transform: rotate(360deg);
+//   }
+// }
+
+// .rotation {
+//   cursor: pointer;
+//   -webkit-transform: rotate(360deg);
+//   animation: rotation 8s linear infinite;
+//   -moz-animation: rotation 8s linear infinite;
+//   -webkit-animation: rotation 8s linear infinite;
+//   -o-animation: rotation 8s linear infinite;
+// }
 </style>
 
