@@ -14,8 +14,10 @@
         <span class="delete" @click="del(item.time)">
           <img src="../assets/images/错误.png" alt style="height:20px;">
         </span>
-        <span class="title" :title="item.title">{{ item.title }}</span>
-        <span class="time">{{ item.time | dateFormat }}</span>
+        <div class="title_box">
+          <span class="title" :title="item.title">{{ item.title }}</span>
+          <span class="time">{{ item.time | dateFormat }}</span>
+        </div>
         <!-- <div class="markdown-body" v-html="item.content"></div> -->
       </div>
     </div>
@@ -42,7 +44,7 @@ export default {
     goPage(id) {
       this.$router.push({ name: "page", params: { id } });
     },
-    del(delTime,event) {
+    del(delTime, event) {
       this.delTime = delTime;
       // 阻止事件冒泡
       event = event || window.event;
@@ -62,10 +64,10 @@ export default {
           localStorage_list.splice(Index, 1);
         }
       });
-      
+
       localStorage.setItem("list", JSON.stringify(localStorage_list));
       // 删除完成后马上更新 localStorage 中的 list 文章列表
-      this.$store.state.list = JSON.parse(localStorage.getItem('list'));
+      this.$store.state.list = JSON.parse(localStorage.getItem("list"));
       this.dialogVisible = false;
       this.open6();
     },
@@ -84,7 +86,7 @@ export default {
 .home-container {
   overflow: hidden;
   .box {
-    width: 90%;
+    width: 1200px;
     margin: 20px auto;
     display: flex;
     justify-content: space-around;
@@ -97,7 +99,6 @@ export default {
       margin: 20px;
       // border: 1px solid #000;
       width: 260px;
-      height: 250px;
       background-color: #fff;
       border-radius: 5px;
       img {
@@ -113,20 +114,32 @@ export default {
         right: 10px;
         z-index: 90;
       }
-      .title {
-        display: block;
-        height: 21px;
-        margin: 15px;
-        font-family: "Mricosoft Yahei";
-        font-size: 16px;
-        font-weight: 700;
-        overflow: hidden;
-      }
-      .time {
-        float: right;
-        margin-right: 15px;
-        font-size: 14px;
-        color: #c0c4cc;
+      .title_box {
+        background-color: rgba(32, 33, 36, 0.71);
+        position: absolute;
+        bottom: 0;
+        display: inline-block;
+        font-size: 13px;
+        height: 40px;
+        width: 260px;
+        line-height: 40px;
+        .title {
+          width: 150px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-left: 10px;
+          white-space: nowrap;
+          display: inline-block;
+          color: #fff;
+          font-family: "Mricosoft Yahei";
+          font-size: 14px;
+        }
+        .time {
+          float: right;
+          margin-right: 10px;
+          font-size: 10px;
+          color: #928686;
+        }
       }
     }
   }

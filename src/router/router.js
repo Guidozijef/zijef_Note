@@ -6,7 +6,6 @@ Vue.use(Router);
 import Markdown from '../components/Markdown.vue';
 import Home from '../components/Home.vue';
 import Page from '../components/Page.vue';
-import Compile from '../components/Compile.vue';
 
 export default new Router({
 	// 路由匹配规则
@@ -16,6 +15,5 @@ export default new Router({
 		{ path: '/markdown', component: Markdown, name: 'markdown' },
 		{ path: '/home/page/:id', component: Page, name: 'page' },
 		{ path: '/markdown/:id', component: Markdown, name: 'markdownedit' }
-		// { path: '/home/compile/:id', component: Compile, name: 'compile' }
 	]
 });

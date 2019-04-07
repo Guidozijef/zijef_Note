@@ -73,7 +73,7 @@ import {
 	Card,
 	Dialog,
 	Message,
-	Slider
+	Slider,
 } from 'element-ui';
 Vue.component(Menu.name, Menu);
 Vue.component(Submenu.name, Submenu);
