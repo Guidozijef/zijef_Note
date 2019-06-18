@@ -37,7 +37,6 @@
         <a href="javascript:;" target="_blank">博客管理</a>
       </el-menu-item>
       <div class="search">
-        <!-- <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="seachValue" @keydown.enter.native="seach"></el-input> -->
         <input type="text" placeholder="请输入内容" v-model="seachValue" @keydown.enter="seach()">
         <i class="el-icon-search"></i>
       </div>
