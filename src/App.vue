@@ -37,7 +37,9 @@
         <a href="javascript:;" target="_blank">博客管理</a>
       </el-menu-item>
       <div class="search">
-        <el-input placeholder="请输入内容" prefix-icon="el-icon-search"></el-input>
+        <!-- <el-input placeholder="请输入内容" prefix-icon="el-icon-search" v-model="seachValue" @keydown.enter.native="seach"></el-input> -->
+        <input type="text" placeholder="请输入内容" v-model="seachValue" @keydown.enter="seach()">
+        <i class="el-icon-search"></i>
       </div>
     </el-menu>
     <div class="write" @click="write()" tabindex="none">
@@ -57,7 +59,7 @@
     </div>
     <!-- <div class="music" @click="stopMusic()">
       <img src="./assets/音符.png" alt style="height:30px;" id="musicImg" class="rotation">
-    </div> -->
+    </div>-->
 
     <!-- 添加分类弹出类名输入框 -->
     <!-- <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button> -->
@@ -75,7 +77,7 @@
     <el-dialog title="提示" :visible.sync="dialogVisible" width="30%">
       <span>内容是否已保存？</span>
       <span slot="footer" class="dialog-footer">
-        <el-button  @click="dialogVisible = false">取 消</el-button>
+        <el-button @click="dialogVisible = false">取 消</el-button>
         <!-- <el-button type="primary" @click="dialogVisible = false">确 定</el-button> -->
         <el-button type="primary" @click="ok()">确 定</el-button>
       </span>
@@ -88,7 +90,7 @@
       autoplay
       loop
       src="http://music.163.com/song/media/outer/url?id=31721419.mp3"
-    >Your browser does not support the audio element.</audio> -->
+    >Your browser does not support the audio element.</audio>-->
   </div>
 </template>
 
@@ -107,6 +109,7 @@ export default {
       dialogVisible: false, // 控制保存提示框
       dialogFormVisible: false, // 控制类名提示框的弹出
       className: "",
+      seachValue: ""
     };
   },
   methods: {
@@ -150,6 +153,16 @@ export default {
       this.dialogVisible = false;
       this.$router.go(-1);
     },
+    seach() {
+      let seachList = [];
+      let _this = this;
+      this.$store.state.list.forEach((item, index) => {
+        if (item.title.indexOf(_this.seachValue) != -1) {
+          seachList.push(item);
+        }
+      });
+      this.$store.state.list = seachList;
+    }
   },
   watch: {
     "$route.path": function(newVal) {
@@ -182,6 +195,36 @@ export default {
   float: left;
   line-height: 59px;
   margin: 0 50px;
+  position: relative;
+  input {
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 35px;
+    line-height: 35px;
+    outline: 0;
+    padding: 0 15px;
+    -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding-left: 30px;
+    width: 100%;
+    &:focus {
+      border-color: #1980e6;
+    }
+  }
+  .el-icon-search {
+    position: absolute;
+    left: 10px;
+    top: 22px;
+    color: #C0C4CC;
+  }
 }
 .write {
   line-height: 59px;
