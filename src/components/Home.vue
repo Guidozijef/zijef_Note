@@ -118,6 +118,7 @@ export default {
         background-color: rgba(32, 33, 36, 0.71);
         position: absolute;
         bottom: 0;
+        left: 0;
         display: inline-block;
         font-size: 13px;
         height: 40px;
